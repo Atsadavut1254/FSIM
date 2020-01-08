@@ -13,10 +13,13 @@ logger = logging.getLogger('HELLO WORLD')
 upload_folder = './uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
-app = Flask('__name__')
+
+app = Flask('__name__', static_folder='../frontend/build/static', template_folder='../frontend/build')
 app.config['UPLOAD_FOLDER'] = upload_folder
 
+
 CORS(app)
+
 
 @app.route('/')
 def index():
