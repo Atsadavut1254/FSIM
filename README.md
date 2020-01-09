@@ -1,1 +1,1 @@
-# FSci Srudent Information Management System
+# FSci Student Information Management System

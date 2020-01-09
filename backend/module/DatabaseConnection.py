@@ -1,11 +1,30 @@
 import pymysql
+import json
+
+# import our module
+from backend.module.FSIMConstant import FSIMConstant
 
 
 class DatabaseConnection:
+    __constant = FSIMConstant()
+    __host = __constant.get_host()
+    __db = __constant.get_db()
+    __user = __constant.get_user_db()
+    __password = __constant.get_password_db()
+    __db_connection = None
 
     def __init__(self):
-        self.db_connection = pymysql.connect("localhost", "root", "", "fsim")
+        self.__db_connection = pymysql.connect(self.__host, self.__user, self.__password, self.__db)
 
-    def getAllSchoolData(self):
-        cursor = self.db_connection.cursor()
-        sql = "SELECT school.school_id, school.school_name, province.name, district.name, sub_district.name from (school left join sub_district on school.sub_district_id like sub_district.sub_district_id) as SA left join (province left join district on province.province_id like district.province_id) AS SB on "
+    def get_all_school_data(self):
+        cursor = self.__db_connection.cursor()
+        sql = "select * from school"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+
+        out = []
+        for school in result:
+            data = {'school_id': school[0], 'school_name': school[1]}
+            out.append(data)
+
+        return out

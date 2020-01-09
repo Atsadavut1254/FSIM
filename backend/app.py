@@ -4,19 +4,21 @@ from flask_cors import CORS, cross_origin
 import logging
 import jwt
 import os
+
+# import our module
 from backend.module.DataManage import DataManage
+from backend.module.DatabaseConnection import DatabaseConnection
 
 logging.basicConfig(level=logging.INFO)
 
 logger = logging.getLogger('HELLO WORLD')
 
 upload_folder = './uploads'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 
 app = Flask('__name__', static_folder='../frontend/build/static', template_folder='../frontend/build')
 app.config['UPLOAD_FOLDER'] = upload_folder
-
+app.config['JSON_AS_ASCII'] = False
 
 CORS(app)
 
@@ -60,9 +62,19 @@ def fileUpload():
 @app.route('/api/read')
 def read_excel():
     data = DataManage()
-    path = "uploads/test_docs/Book1.xlsx"
+    path = "uploads/test_docs/Book2.xlsx"
     data.readExcel(path)
     return "Hello"
+
+
+# api path
+
+@app.route('/api/getallschool', methods=['GET'])
+def get_all_school():
+    connect = DatabaseConnection()
+    data = connect.get_all_school_data()
+
+    return jsonify({"data": data})
 
 
 if __name__ == '__main__':
