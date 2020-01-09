@@ -24,7 +24,24 @@ class DatabaseConnection:
 
         out = []
         for school in result:
-            data = {'school_id': school[0], 'school_name': school[1], 'province': school[2], 'district': school[3], 'subdistrict': school[4]}
+            data = {'school_id': school[0], 'school_name': school[1], 'province': school[2], 'district': school[3],
+                    'subdistrict': school[4]}
+            out.append(data)
+
+        self.__db_connection.close()
+        return out
+
+    def get_school_by_id(self, school_id):
+        cursor = self.__db_connection.cursor()
+        sql = "SELECT sc.school_id, sc.school_name, pro.name, dist.name, sub.name FROM school as sc LEFT JOIN province as pro ON sc.province_id LIKE pro.province_id LEFT JOIN district as dist ON sc.district_id LIKE dist.district_id LEFT JOIN sub_district as sub ON sc.sub_district_id LIKE sub.sub_district_id WHERE sc.school_id like '" + str(
+            school_id) + "'"
+        cursor.execute(sql)
+        result = cursor.fetchall()
+
+        out = []
+        for school in result:
+            data = {'school_id': school[0], 'school_name': school[1], 'province': school[2], 'district': school[3],
+                    'subdistrict': school[4]}
             out.append(data)
 
         self.__db_connection.close()

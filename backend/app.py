@@ -77,6 +77,16 @@ def get_all_school():
     return jsonify({"data": data})
 
 
+@app.route('/api/getschool', methods=['GET'])
+def get_school_by_id():
+    school_id = request.args.get('school_id')
+
+    connect = DatabaseConnection()
+    data = connect.get_school_by_id(str(school_id))
+    
+    return jsonify({"data": data})
+
+
 if __name__ == '__main__':
     app.secret_key = os.urandom(24)
     app.run(debug=True)
