@@ -27,4 +27,5 @@ class DatabaseConnection:
             data = {'school_id': school[0], 'school_name': school[1], 'province': school[2], 'district': school[3], 'subdistrict': school[4]}
             out.append(data)
 
+        self.__db_connection.close()
         return out
