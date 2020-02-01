@@ -9,6 +9,8 @@ import Footer from "./Components/footer";
 import Index from "./Components/Index";
 import Login from "./Components/Login";
 import StudentForm from "./Components/StudentForm";
+import AddStudent from "./Components/add_student";
+
 // import Mthpopup from "./Components/Mthpopup";
 
 
@@ -33,6 +35,8 @@ function App() {
             <Route exact path="/" component={Index} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/std" component={StudentForm} />
+            <Route exact path="/add-new-student" component={AddStudent} />
+
             {/* <Route exact path="/MTH" component={Mthpopup} /> */}
           </switch>
           <Footer />

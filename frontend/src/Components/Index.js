@@ -4,7 +4,6 @@ class Index extends Component {
   render() {
     return (
       <React.Fragment>
-        <body>
           <div className="container my-5">
             <div className="row">
               <div className="col-10">
@@ -122,7 +121,6 @@ class Index extends Component {
               </div>
             </div>
           </div>
-        </body>
       </React.Fragment>
     );
   }

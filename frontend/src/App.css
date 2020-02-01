@@ -248,3 +248,18 @@ nav {
   font-size: 12px; 
   text-align: center; 
 } 
+
+.button{
+  padding: 1%;
+}
+
+.ShowData{
+  background-color: #3BB3A9;
+  border-Color: #3BB3A9;
+}
+
+
+
+.H100{
+  color:#282c34
+}
