@@ -1,9 +1,10 @@
-import React, { Component }  from 'react'
+import React from 'react'
+import ReactDOM from 'react-dom';
 import SearchActivity from './SearchActivity'
 import AddActivity from './AddActivity'
 import { Container, Nav, Button, Tab } from 'react-bootstrap';
 
-class add_activity extends Component {
+class add_activity extends React.Component {
 
     state = {
         key: 'SearchActivity',

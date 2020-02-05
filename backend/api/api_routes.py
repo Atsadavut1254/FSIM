@@ -6,9 +6,6 @@ import datetime
 # import database connection
 from backend.modules.DatabaseConnection import DatabaseConnection
 
-# import data manager
-from backend.modules.DataManage import DataManage
-
 
 api_bp = Blueprint('api_bp', __name__, url_prefix='/api/v1')
 
@@ -68,15 +65,3 @@ def login():
         return jsonify({'token': token.decode('UTF-8')})
 
     return make_response('Could not verify', 401, {'WWW-Authenticate': 'Basic realm="Please Login'})
-
-
-@api_bp.route('/preread', methods=['GET'])
-def pre_readfile():
-    headers = {"Content-type": "application/json"}
-    dm = DataManage()
-    insert = dm.pre_read()
-
-    if insert:
-        return make_response(jsonify({"result": "OK"}), 200, headers)
-    else:
-        return make_response(jsonify({"result": "Error"}), 500, headers)

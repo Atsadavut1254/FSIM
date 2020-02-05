@@ -2,44 +2,19 @@ import React, { Component } from "react";
 import { Form, Row, Col } from "react-bootstrap";
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      staff_id: "",
-      password: "",
-      currentUser: null,
-      message: ""
-    };
-  }
-
-
   render() {
-   
     return (
-      <form onSubmit={this.onSubmit} >
+      <form>
         <section className="section container my-5">
           <div className="card3 col-4">
             <br />
             <h3>เข้าสู่ระบบ</h3>
             <hr />
             <Form.Group controlId="formGroupEmail">
-              <Form.Control
-                type="text"
-                placeholder="Username"
-                className="input"
-                name="staff_id"
-                onChange={this.onChange}
-              />
+              <Form.Control type="email" placeholder="Enter email" />
             </Form.Group>
             <Form.Group controlId="formGroupPassword">
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                className="input"
-                name="password"
-                onChange={this.onChange}
-              />
+              <Form.Control type="password" placeholder="Password" />
             </Form.Group>
             <hr />
             {["checkbox"].map(type => (
@@ -49,7 +24,6 @@ class Login extends Component {
                   label="Confirm"
                   name="Confirm"
                   id="Confirm"
-                  onChange={this.onChange}
                 />
               </div>
             ))}

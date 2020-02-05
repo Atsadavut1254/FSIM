@@ -4,7 +4,7 @@
 
 ### macOS ###
 # General
-**/.DS_Store
+.DS_Store
 .AppleDouble
 .LSOverride
 
@@ -210,9 +210,5 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
-
-frontend/node_modules/
-frontend/.DS_Store
 
 # End of https://www.gitignore.io/api/macos,pycharm,windows,phpstorm,visualstudiocode

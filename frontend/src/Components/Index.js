@@ -1,221 +1,128 @@
 import React, { Component } from "react";
-import Logomth from "../img/mth.png";
-import Logochm from "../img/chm.png";
-import Logomic from "../img/mic.png";
-import Logophy from "../img/phy.png";
-import { Bar } from "react-chartjs-2";
-import {
-  Container,
-  Header,
-  Grid,
-  Modal,
-  Breadcrumb,
-  Image,
-  Button,
-  Icon,
-  Form,
-  Menu
-} from "semantic-ui-react";
-
-import HomeModal from './HomeModal'
 
 class Index extends Component {
-
-  constructor(props){
-    super(props)
-
-    this.state = {
-      open: false,
-      dimmer: ""
-    }
-
-    this.showModal = this.showModal.bind(this)
-  }
-  
-  showModal(){
-    this.setState({
-      open: true
-    })
-    // console.log(this.state.open)
-  }
-  // state = { activeItem: "bio", open: false };
-  // show = dimmer => () => this.setState({ dimmer, open: true });
-
-  // close = () => this.setState({ open: false });
-
-  // handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
   render() {
-    const { activeItem } = this.state;
-    const{ open, dimmer } = this.state;
-    // console.log(open)
-
     return (
       <React.Fragment>
-        <div className="container">
-          <Form.Group>
-            <Menu tabular style={{ marginTop: "3em" }} centered>
-              <Menu.Item name="ข้อมูลนักศึกษา" active={activeItem === "bio"} />
-              <Menu.Item position="right">
-                <Button>จัดการข้อมูล</Button>
-              </Menu.Item>
-            </Menu>
-            <Grid columns={4} style={{ marginTop: "3em" }}>
-              <Grid.Row>
-                <Grid.Column>
-                  <button
-                    type="button"
-                    class="btn btn-light btn-circle btn-xl"
-                    onClick={this.showModal}
-
-                  >
-                    <img className="logo-branch" src={Logomth}></img>
-                  </button>
-                  <HomeModal dept="20" show={open} dimer={dimmer} />
-                  {/* <Modal
-                    className="modal-center"
-                    dimmer={dimmer}
-                    open={open}
-                    onClose={this.close}
-                  >
-                    <Modal.Header>
-                      Information 55555
-                    </Modal.Header>
-                    <Modal.Content>
-                      <Modal.Description>
-                    <h1 style={{ color: "black" }}>5555555</h1>
-                      </Modal.Description>
-                    </Modal.Content>
-                  </Modal> */}
-
-                  <Header size="small">Mathematic</Header>
-                </Grid.Column>
-                <Grid.Column>
-                  <button
-                    type="button"
-                    class="btn btn-light btn-circle btn-xl"
-                    // onClick={this.show(true)}
-                  >
-                    <img className="logo-branch" src={Logophy}></img>
-                  </button>
-                  {/* <Modal
-                    className="modal-center"
-                    dimmer={dimmer}
-                    open={open}
-                    onClose={this.close}
-                  >
-                    <Modal.Header>Information</Modal.Header>
-                    <Modal.Content>
-                      <Modal.Description>
-                        
-                      </Modal.Description>
-                    </Modal.Content>
-                  </Modal> */}
-
-                  <Header size="small">Physic</Header>
-                </Grid.Column>
-                <Grid.Column>
-                  <button
-                    type="button"
-                    class="btn btn-light btn-circle btn-xl"
-                    // onClick={this.show(true)}
-                  >
-                    <img className="logo-branch" src={Logomic}></img>
-                  </button>
-                  {/* <Modal
-                    className="modal-center"
-                    dimmer={dimmer}
-                    open={open}
-                    onClose={this.close}
-                  > */}
-                    {/* <Modal.Header>Information</Modal.Header>
-                    <Modal.Content>
-                      <Modal.Description>
-                        
-                      </Modal.Description>
-                    </Modal.Content>
-                  </Modal> */}
-
-                  <Header size="small">Microbiology</Header>
-                </Grid.Column>
-                <Grid.Column>
-                  <button
-                    type="button"
-                    class="btn btn-light btn-circle btn-xl"
-                    // onClick={this.show(true)}
-                  >
-                    <img className="logo-branch" src={Logochm}></img>
-                  </button>
-                  {/* <Modal
-                    className="modal-center"
-                    dimmer={dimmer}
-                    open={open}
-                    onClose={this.close}
-                  > */}
-                    {/* <Modal.Header>Information66666</Modal.Header>
-                    <Modal.Content>
-                      <Modal.Description>
-                       
-                       </Modal.Description>
-                    </Modal.Content>
-                  </Modal>  */}
-                  <Header size="small">Chemical</Header>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
+        <body>
+          <div className="container my-5">
+            <div className="row">
+              <div className="col-10">
+                <h3>ข้อมูลนักศึกษา</h3>
+              </div>
+              <div className="col">
+                <button className="btn btn-danger">จัดการข้อมูล</button>
+              </div>
+            </div>
             <hr />
-          </Form.Group>
+            <div className="form-group">
+              <div className="row">
+                <div className="col-12 col-lg-3" align="center">
+                  <button type="button" class="btn btn-light btn-circle btn-xl">
+                    <img className="logo-branch" src="../img/mth.png"></img>
+                  </button>
 
-          <Form.Group>
-            <Menu tabular style={{ marginTop: "5em" }}>
-              <Menu.Item position="left">
-                <Button>จัดการข้อมูล</Button>
-              </Menu.Item>
-              <Menu.Item
-                position="right"
-                name="กิจกรรมประชาสัมพันธ์"
-                active={activeItem === "bio"}
-              />
-            </Menu>
-            <Grid
-              columns={2}
-              style={{ marginTop: "3em" }}
-              className="bg-deepblue"
-            >
-              <Grid.Row>
-                <Grid.Column width={8}>
-                  <Image className="banner-active" src="../img/img-1.jpg" />
-                </Grid.Column>
-                <Grid.Column textAlign="center" style={{ marginTop: "10%" }}>
-                  <Form.Group>
-                    <Button color="yellow">การรับเข้า</Button>
-                    <Button color="yellow">โครงการรับเข้า</Button>
-                    <Button color="yellow">ประชาสัมพันธ์</Button>
-                  </Form.Group>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Form.Group>
+                  <div className="my-3">
+                    <h3>Mathematic</h3>
+                  </div>
+                </div>
+                <div className="col-12 col-lg-3" align="center">
+                  <button type="button" class="btn btn-light btn-circle btn-xl">
+                    <img className="logo-branch" src="../img/chm.png"></img>
+                  </button>
 
-          <Form.Group>
-            <Menu tabular style={{ marginTop: "5em" }}>
-              <Menu.Item name="ข้อมูลศิษย์เก่า" active={activeItem === "bio"} />
-              <Menu.Item position="right">
-                <Button>จัดการข้อมูล</Button>
-              </Menu.Item>
-            </Menu>
+                  <div className="my-3">
+                    <h3>Chemical</h3>
+                  </div>
+                </div>
+                <div className="col-12 col-lg-3" align="center">
+                  <button type="button" class="btn btn-light btn-circle btn-xl">
+                    <img className="logo-branch" src="../img/phy.png"></img>
+                  </button>
 
-            <Container width={12}>
-              <Button animated size="massive">
-                <Button.Content visible>Login</Button.Content>
-                <Button.Content hidden>
-                  <Icon name="arrow right" />
-                </Button.Content>
-              </Button>
-            </Container>
-          </Form.Group>
-        </div>
-        
+                  <div className="my-3">
+                    <h3>Physic</h3>
+                  </div>
+                </div>
+                <div className="col-12 col-lg-3" align="center">
+                  <button type="button" class="btn btn-light btn-circle btn-xl">
+                    <img className="logo-branch" src="../img/mic.png"></img>
+                  </button>
+
+                  <div className="my-3">
+                    <h3>Microbiology</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row" style={{ marginTop: "10%" }}>
+              <div className="col-10">
+                <h3>กิจกรรมประชาสัมพันธ์</h3>
+              </div>
+              <div className="col">
+                <button className="btn btn-danger">จัดการข้อมูล</button>
+              </div>
+            </div>
+            <hr />
+            <div className="form-group">
+              <div className="row bg-deeppurple">
+                <div className="col-12 col-md-8">
+                  <img className="banner-active" src="../img/img-1.jpg"></img>
+                </div>
+                <div className="col-6 col-md-4">
+                  <a href="#" className="btn btn-warning btn-active">
+                    การรับเข้า
+                  </a>
+                </div>
+              </div>
+              <div className="row my-5 bg-deepgreen">
+                <div className="col-6 col-md-4">
+                  <a href="#" className="btn btn-warning btn-active">
+                    โครงการรับเข้า
+                  </a>
+                </div>
+                <div className="col-12 col-md-8">
+                  <img className="banner-active2" src="../img/img-2.jpg"></img>
+                </div>
+              </div>
+              <div className="row my-5 bg-deepblue">
+                <div className="col-12 col-md-8">
+                  <img className="banner-active" src="../img/img-3.jpg"></img>
+                </div>
+                <div className="col-6 col-md-4">
+                  <a href="#" className="btn btn-warning btn-active">
+                    ประชาสัมพันธ์
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-10">
+                <h3>ข้อมูลศิษย์เก่า</h3>
+              </div>
+              <div className="col">
+                <button className="btn btn-danger">จัดการข้อมูล</button>
+              </div>
+            </div>
+            <hr />
+            <div className="form-group">
+              <div className="row">
+                <div className="col-12 col-lg-4"></div>
+                <div className="col-12 col-lg-4 text-center">
+                  <button
+                    href="#"
+                    type="button"
+                    id="btn-alumn"
+                    className="btn btn-warning"
+                  >
+                    สรุปแบบสอบถาม
+                  </button>
+                </div>
+                <div className="col-12 col-lg-4"></div>
+              </div>
+            </div>
+          </div>
+        </body>
       </React.Fragment>
     );
   }

@@ -4,15 +4,15 @@ import "./App.css";
 // import Route Tool
 import { Route } from "react-router-dom";
 
-import Header from "./Components/Navbar";
+import Header from "./Components/header";
 import Footer from "./Components/footer";
 import Index from "./Components/Index";
 import Login from "./Components/Login";
 import StudentForm from "./Components/StudentForm";
-import add_student from "./Components/NewStudent/Add_student";
-import add_activity from "./Components/admin/activity/add_activity";
-import add_project from "./Components/admin/project/AddProject";
-import main_addmission from "./Components/admin/mainAddmission/main_addmission";
+import add_student from "./Components/admin/add_student";
+import add_activity from "./Components/admin/add_activity";
+import add_project from "./Components/admin/AddProject";
+
 // import Mthpopup from "./Components/Mthpopup";
 
 
@@ -40,7 +40,6 @@ function App() {
             <Route exact path="/add_student" component={add_student} />
             <Route exact path="/add_activity" component={add_activity} />
             <Route exact path="/add_project" component={add_project} />
-            <Route exact path="/main-addmission" component={main_addmission} />
 
             
             {/* <Route exact path="/MTH" component={Mthpopup} /> */}

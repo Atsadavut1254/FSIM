@@ -6,6 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 // import bootstrap set
+// import MDbootstrap from "mdbootstrap";
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap'
 import $ from 'jquery'
@@ -19,10 +20,7 @@ const AppWithRouter = () => (
         <App/>
     </BrowserRouter>
 )
-const styleLink = document.createElement("link");
-styleLink.rel = "stylesheet";
-styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
-document.head.appendChild(styleLink);
+
 
 ReactDOM.render(<AppWithRouter/>, document.getElementById('root'));
 

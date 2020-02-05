@@ -1,11 +1,12 @@
-import React,{Component} from 'react'
+import React from 'react'
+import ReactDOM from 'react-dom';
 import { Form, Col, Row, Button, Container } from 'react-bootstrap';
-
+import Activity from '../option/activity';
+import Project from '../option/project';
 import ProjectTable from './ProjectTable'
 
 
-
-class AddActivity extends Component {
+class AddActivity extends React.Component {
 
     constructor(props) {
         super(props);
@@ -16,6 +17,7 @@ class AddActivity extends Component {
                 project: ''
             }
         ]
+        this.state.count = 1;
 
 
     }
@@ -25,7 +27,7 @@ class AddActivity extends Component {
     handleRowDel(product) {
         let index = this.state.product.indexOf(product);
         this.state.product.splice(index, 1);
-        this.setState(this.state.product);
+        console.log(this.state)
     };
 
     handleAddEvent = () => {
@@ -35,25 +37,11 @@ class AddActivity extends Component {
             project: ""
         }
         this.state.product.push(products);
-        this.setState(this.state.product);
 
-        console.log(this.state.product)
+        this.setState({ count: this.state.count + 1 })
 
 
-    }
 
-    handleReset=()=>{
-        let products = [
-            {
-                id: 0,
-                project: ''
-            }
-        ]
-        this.state.product=products
-        // console.log(this.state.product)
-        this.setState(this.state.product);
-        // this.state.product.splice(3, 1);
-        // this.setState(this.state.product);
     }
 
     handleProductTable(evt) {
@@ -99,7 +87,7 @@ class AddActivity extends Component {
 
                             <Button
                                 className='btn-EditData interval-1'
-                                onClick={this.handleReset}
+                                onClick={this.handleSearch}
                             >RESET</Button>
 
                             <Button

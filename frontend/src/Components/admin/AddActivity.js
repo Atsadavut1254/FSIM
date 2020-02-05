@@ -1,18 +1,19 @@
-import React, { Component }  from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom';
 import { Form, Col, Row, Button } from 'react-bootstrap';
-import Project from '../../option/project';
+import Activity from '../option/activity';
+import Project from '../option/project';
 
 
-class AddActivity extends Component {
+class AddActivity extends React.Component {
 
 
     state = {
-        activity: '',
+        activity: 0,
         project: 0
     }
 
-    handleChangeNewActivity = (search) => {
+    handleChangeActivity = (search) => {
         this.setState({ activity: search.target.value });
     }
 
@@ -21,15 +22,6 @@ class AddActivity extends Component {
 
     }
 
-    handleSubmit = (event) => {
-        // event.preventDefault();
-        console.log(this.state)
-    }
-
-    handleReset=(event)=>{
-        this.setState({activity:'',project:0});
-        
-    }
 
 
 
@@ -45,7 +37,7 @@ class AddActivity extends Component {
                             <label>กิจกรรมรับเข้า</label>
                         </Col>
                         <Col sm='6'>
-                            <Form.Control type="text" placeholder="กิจกรรมรับเข้าใหม่" onChange={this.handleChangeNewActivity} value={this.state.activity} />
+                            <Form.Control type="text" placeholder="กิจกรรมรับเข้าใหม่" />
 
                         </Col>
                     </Row>
@@ -54,9 +46,12 @@ class AddActivity extends Component {
                             <label>ประเภทโครงการ</label>
                         </Col>
                         <Col sm='6'>
-                            <Project option={this.handleChangeProject} value={this.state.project}/>
+                            <Project option={this.handleChangeProject} />
                         </Col>
                     </Row>
+
+                  
+
                     
                     <div   style={{marginTop:'5%'}}>
                     <Button
@@ -65,14 +60,16 @@ class AddActivity extends Component {
                     >เพิ่มโครงการ</Button>
                         <Button
                             className='btn-EditData interval-1'
-                            onClick={this.handleReset}
+                            onClick={this.handleSearch}
                         >RESET</Button>
 
                         <Button
                             className='btn-info interval-1'
-                            onClick={this.handleSubmit}
+                            onClick={this.handleSearch}
                         >SUBMIT</Button>
                     </div>
+
+
                 </Form>
             </React.Fragment>
         )
