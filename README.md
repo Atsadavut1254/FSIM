@@ -4,7 +4,7 @@ To run this web application please install python library follow the "requiremen
 pip install -r requirements.txt
 
 <strong>SYSTEM REQUIREMENTS</strong><br/>
-python version 3.7
+python version 3.7 and pip
 
 <strong>DEVELOP GUIDE</strong>
 <ol>

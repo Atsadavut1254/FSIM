@@ -1,49 +1,66 @@
 import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
-// import Route Tool
-import { Route } from "react-router-dom";
+// import Api
+import ApiManage from "./Class/ApiManage";
 
-import Header from "./Components/header";
-import Footer from "./Components/footer";
-import Index from "./Components/Index";
+
+//import Main Page
+import Home from "./Components/Index/Home";
+import Navbar from "./Components/Menu";
 import Login from "./Components/Login";
-import StudentForm from "./Components/StudentForm";
-import AddStudent from "./Components/add_student";
 
-// import Mthpopup from "./Components/Mthpopup";
+//import Admin Page
+
+//import User Page
+import Active from "./Components/User/ActiveRecruitment";
 
 
-const Home = () => <h1>HOME</h1>;
-const About = () => <h1>About</h1>;
 
-// export class Index extends Component{
-//   constructor(props){
-//     super(props);
-//     this.state ={Index:[]}
-//   })
-// }
+class App extends Component {
+  constructor(props) {
+    super(props);
 
-function App() {
+    this.state = {
+      data: ""
+    };
+  }
 
-  return (
-    <React.Fragment>
-      <body>
+  componentDidMount() {
+    ApiManage.get("admission/2560/1/1")
+      .then(res => {
+        let receive_data = res.data;
+        if (receive_data.response === true) {
+          this.setState({
+            data: receive_data.data
+          });
+        }
+      })
+      .catch(error => {
+        console.log("Error fetching and parsing data", error);
+      });
+  }
+  render() {
+    // let { data } = this.state;
+    return (
+      <React.Fragment>
+        <Navbar/>
         <div className="App">
-          <Header />
-          <switch>
-            <Route exact path="/" component={Index} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/std" component={StudentForm} />
-            <Route exact path="/add-new-student" component={AddStudent} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login}/>
 
-            {/* <Route exact path="/MTH" component={Mthpopup} /> */}
-          </switch>
-          <Footer />
+            {/* Route for admin */}
+
+
+            {/* Route for user */}
+            <Route exact path="/active" component={Active}/>
+
+          </Switch>
         </div>
-      </body>
-    </React.Fragment>
-  );
+      </React.Fragment>
+    );
+  }
 }
-
 export default App;

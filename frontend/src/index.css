@@ -1,8 +1,33 @@
+@font-face {
+  font-family: OpenSans-Quark;
+  src: url(font/quark/Quark-Light.otf);
+}
+
+@font-face {
+  font-family: OpenSans-Quark;
+  src: url(font/quark/Quark-Bold.otf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: OpenSans-Quark;
+  src: url(font/opensans/OpenSans-Light.ttf);
+  unicode-range: U+41-5A, U+61-7A, U+C0-FF;
+}
+
+@font-face {
+  font-family: OpenSans-Quark;
+  src: url(font/opensans/OpenSans-Bold.ttf);
+  font-weight: bold;
+  unicode-range: U+41-5A, U+61-7A, U+C0-FF;
+}
+
+* {
+  font-family: OpenSans-Quark, Helvetica, sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

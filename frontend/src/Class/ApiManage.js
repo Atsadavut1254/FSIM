@@ -1,14 +1,7 @@
 // "use strict"
 
-class ApiManage {
+import axios from 'axios'
 
-    constructor(){
-        this.host = "http://127.0.0.1:5000/"
-    }
-
-    uploadApi(){
-        return this.host + "v1/upload"
-    }
-}
-
-export default ApiManage
+export default axios.create({
+    baseURL: 'http://127.0.0.1:5000/api/v1/'
+})
