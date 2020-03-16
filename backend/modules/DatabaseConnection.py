@@ -223,8 +223,8 @@ class DatabaseConnection:
         out = []
 
         for data in result:
-            data = {'student_id': data[0], 'subject_code': data[1], 'semester': data[2], 'education_year': data[3],
-                    'grade': data[4]}
+            data = {'student_id': data[1], 'subject_code': data[2], 'semester': data[3], 'education_year': data[4],
+                    'grade': data[5]}
             out.append(data)
 
         out_response['response'] = True
