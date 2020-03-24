@@ -38,10 +38,7 @@ app.config['SECRET_KEY'] = constant.SECRET_KEY
 
 # setup blueprint
 app.register_blueprint(api_routes.api_bp)
-<<<<<<< HEAD
-=======
 app.register_blueprint(admin_api_routes.admin_bp)
->>>>>>> master
 
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000/*"}})
 
