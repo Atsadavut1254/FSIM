@@ -143,21 +143,3 @@ def get_admission(branch, year, types, channel):
         return make_response(jsonify({"response": data['response'], "message": data['message'], "data": data['data']}),
                              500, headers)
 
-
-@api_bp.route('/branch', methods=['GET'])
-def branch():
-    headers = {"Content-type": "application/json"}
-    con = DatabaseConnection.getInstance()
-    data = con.get_branch()
-
-    if data['response']:
-        return make_response(jsonify({"response": data['response'], "message": data['message'], "data": data['data']}),
-                             200, headers)
-    else:
-        return make_response(jsonify({"response": data['response'], "message": data['message'], "data": data['data']}),
-                             500, headers)
-
-
-
-  
-
