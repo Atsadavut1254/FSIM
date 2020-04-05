@@ -26,5 +26,16 @@ import backend.helpers.inner_response_helper as inner_res_helper
 
 class AnalyzeActivity:
 
+    __instance = None
+
+    @staticmethod
+    def get_instance():
+        if AnalyzeActivity.__instance is None:
+            AnalyzeActivity()
+        return AnalyzeActivity.__instance
+
     def __init__(self):
-        print("Activity")
+        if AnalyzeActivity.__instance is not None:
+            raise Exception("This class is a singleton! analyze activity")
+        else:
+            AnalyzeActivity.__instance = self

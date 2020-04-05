@@ -4,31 +4,32 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// redux
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from "redux";
+import rootReducer from './redux/reducers';
+import logger from 'redux-logger'
+import thunk from "redux-thunk";
 
 // import route tool
 import { BrowserRouter } from 'react-router-dom'
+
+// import css tool
 import 'semantic-ui-css/semantic.min.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap'
 
-
-// const styleLink = document.createElement("link");
-// styleLink.rel = "stylesheet";
-// styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
-// document.head.appendChild(styleLink);
-
-
-const styleLink = document.createElement("link");
-styleLink.rel = "stylesheet";
-styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css";
-document.head.appendChild(styleLink);
+const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 
 const AppWithRouter = () => (
-    <BrowserRouter>
-        <App/>
-    </BrowserRouter>
-)
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>
+);
 
-ReactDOM.render(<AppWithRouter/>, document.getElementById('root'));
-
+ReactDOM.render(<AppWithRouter />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

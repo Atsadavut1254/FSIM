@@ -213,7 +213,7 @@ class DatabaseHelper:
     # get alumni data (aom request)
     # TODO() this method doesn't change the sql command waiting the data
     def get_all_alumni(self):
-        sql_command = "select student_id, branch.branch_name as branch, graduated_gpax, congrat_year, work_status.status_title as work_status, company, salary from (alumni left join branch on alumni.branch_id = branch.branch_id) left join work_status on alumni.work_status = work_status.status_id"
+        sql_command = "SELECT alumni_id as student_id, branch_id, branch_name, gpax, graduated_year, status_id, status_title, company, salary FROM alumni NATURAL JOIN alumni_graduated NATURAL JOIN has_branch NATURAL JOIN branch NATURAL JOIN working NATURAL JOIN work_status"
         execute = self.__execute_query(sql_command)
 
         if not execute['response']:
@@ -223,12 +223,13 @@ class DatabaseHelper:
         for data in execute['value']:
             data = {
                 'student_id': data[0],
-                'branch': data[1],
-                'graduated_gpax': data[2],
-                'congrat_year': data[3],
-                'work_status': data[4],
-                'company': data[5],
-                'salary': data[6]
+                'branch_id': data[1],
+                'branch_name': data[2],
+                'graduated_gpax': data[3],
+                'congrat_year': data[4],
+                'work_status': data[6],
+                'company': data[7],
+                'salary': data[8]
             }
             out_function_data.append(data)
 
@@ -238,9 +239,10 @@ class DatabaseHelper:
 
     def get_department(self, name):
         if name is None:
-            sql_command = "SELECT dept_name, dept_id FROM department"
+            sql_command = "SELECT count(branch_id) as student_amount, branch_id, branch_name, dept_id, dept_name FROM student NATURAL JOIN study_in NATURAL JOIN has_branch NATURAL JOIN department NATURAL JOIN branch GROUP BY branch_id ORDER BY dept_id ASC"
         else:
-            sql_command = "SELECT dept_name, dept_id FROM department where dept_id like '%s'" % (name)
+            sql_command = "SELECT count(branch_id) as student_amount, branch_id, branch_name, dept_id, dept_name FROM student NATURAL JOIN study_in NATURAL JOIN has_branch NATURAL JOIN department NATURAL JOIN branch WHERE dept_id like '%s' GROUP BY branch_id ORDER BY dept_id ASC" % (
+                name)
 
         execute = self.__execute_query(sql_command)
 
@@ -248,12 +250,34 @@ class DatabaseHelper:
             return execute
 
         out_function_data = []
+
+        cur_dept = None
         for dept in execute['value']:
+            if dept[3] != cur_dept:
+                cur_dept = dept[3]
+                temp = {
+                    'dept_id': dept[3],
+                    'dept_name': dept[4],
+                    'branch': []
+                }
+                out_function_data.append(temp)
+
+        cur_dept = execute['value'][0][3]
+        count = 0
+
+        for branch in execute['value']:
+            dept = branch[3]
+            if dept != cur_dept:
+                cur_dept = dept
+                count += 1
+
             temp = {
-                'dept_name': dept[0],
-                'dept_id': dept[1]
+                'branch_id': branch[1],
+                'branch_name': branch[2],
+                'amount_student': branch[0]
             }
-            out_function_data.append(temp)
+
+            out_function_data[count]['branch'].append(temp)
 
         return inner_res_helper.make_inner_response(response=True, message="Success", value=out_function_data)
 
@@ -282,9 +306,26 @@ class DatabaseHelper:
 
         return inner_res_helper.make_inner_response(True, "Query Successful", out_function_data)
 
+    def get_admission_channel(self):
+        sql_command = "select * from admission_channel"
+        execute = self.__execute_query(sql_command)
+
+        if not execute['response']:
+            return execute
+
+        out_function_data = []
+        for channel in execute['value']:
+            data = {
+                'channel_id': channel[0],
+                'channel_name': channel[1]
+            }
+            out_function_data.append(data)
+
+        return inner_res_helper.make_inner_response(True, "Query Successful", out_function_data)
+
     # get student data by department
     def get_department_student_data(self, dept_id):
-        sql_command = "SELECT student_id, current_gpax, branch_name, branch_id, status_id FROM student NATURAL JOIN study_in NATURAL JOIN has_branch NATURAL JOIN branch NATURAL JOIN department NATURAL JOIN has_status WHERE dept_id like '%s'" % (
+        sql_command = "SELECT student_id, current_gpax, branch_id, status_id FROM student NATURAL JOIN study_in NATURAL JOIN has_branch NATURAL JOIN branch NATURAL JOIN department NATURAL JOIN has_status WHERE dept_id like '%s'" % (
             str(dept_id))
         execute = self.__execute_query(sql_command)
 
@@ -299,7 +340,7 @@ class DatabaseHelper:
             temp = {
                 'student_id': data[0],
                 'current_gpax': data[1],
-                'branch_name': data[2],
+                'branch_id': data[2],
                 'status_id': data[3],
                 'education_year': year
             }

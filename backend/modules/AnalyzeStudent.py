@@ -23,7 +23,7 @@
 from backend.helpers.database_helper import DatabaseHelper
 import backend.helpers.inner_response_helper as inner_res_helper
 from collections import defaultdict
-
+from collections import OrderedDict
 import pandas as pd
 import json
 
@@ -48,7 +48,7 @@ class AnalyzeStudent:
     # this function returns student data and status student that analyze in 'dept'.
     # this function required department id
     def analyze_by_dept(self, dept):
-        connect = DatabaseHelper().get_instance()
+        connect = DatabaseHelper.get_instance()
         data = connect.get_all_student(dept)
         value = {}
         if data['value']:
@@ -76,7 +76,7 @@ class AnalyzeStudent:
     # this function return  academic results that analyze in 'dept'.
     # this function required department id
     def analyze_by_subject_dept(self, dept):
-        connect = DatabaseHelper().get_instance()
+        connect = DatabaseHelper.get_instance()
         data = connect.get_all_academic_record(dept)
         value = {}
         if data['value']:
@@ -85,35 +85,12 @@ class AnalyzeStudent:
             df_grouped = pd.DataFrame(grouped.stack().to_frame(name='count').reset_index())
             value['subject_by_year'] = [self.__retro_dictify(df_grouped)]
             response = True
-            message = "Analyze Student Successfully"
+            message = "Analyze Subject Successfully"
         else:
             response = False
-            message = "Analyze Student Failed"
+            message = "Analyze Subject Failed"
         return inner_res_helper.make_inner_response(response, message, value)
 
-    # uses in admin
-    # this function returns detail of student data that analyze in 'dept'.
-    # this function required department id
-    def show_data_student(self, dept):
-        connect = DatabaseHelper().get_instance()
-        data = connect.get_all_student(dept)
-        value = {}
-        if data['value']:
-            df  = self.__set_status(pd.DataFrame(data['value']))
-            num_student_dept = self.__count_student_dept(df)
-            df_branch = self.__count_by_branch(df)
-            data_student = df[['student_id','branch','current_gpax']].to_dict('records')
-            # set data
-            value['all_stu_dept'] = str(num_student_dept)
-            value['branch'] = [df_branch]
-            value['data_student']=[data_student]
-            response = True
-            message = "Analyze Student Successfully"
-        else:
-            response = False
-            message = "Analyze Student Failed"
-
-        return inner_res_helper.make_inner_response(response, message, value)
 
 
     def __count_by_branch(self, df_dept):
@@ -125,18 +102,20 @@ class AnalyzeStudent:
         return num_student_dept
 
     def __count_status(self, df):
-        count_status_all_branch = df.groupby(['student_year', 'education_status']).size().unstack(fill_value=0).to_dict(
-            'index')
-        return count_status_all_branch
+        count_status_all_branch = df.groupby(['student_year', 'education_status']).size().unstack(fill_value=0)
+        df_set_column_name=self.__check_column_status(count_status_all_branch).to_dict('index')
+        return df_set_column_name
+
 
     def __status_by_branch(self, df):
-        grouped = pd.DataFrame(
-            df.groupby(['branch', 'student_year', 'education_status']).size().to_frame(name='count').reset_index())
-        data_analyze = self.__retro_dictify(grouped)
-        return data_analyze
+        grouped = df.groupby(['branch', 'education_status']).size().unstack(fill_value=0)
+           
+        df_set_status=self.__check_column_status(grouped).to_dict('index')
+        # print(grouped)
+        return df_set_status
 
     def __set_status(self, df):
-        return df.replace({'education_status': {1: 'ปกติ', 2: 'วิทยาฑัณฑ์', 3: 'ตกออก'}})
+        return df.replace({'education_status': {1: 'ปกติ', 2: 'วิทยาฑัณฑ์', 3: 'ตกออก', 4: 'ลาพัก'}})
 
     def __retro_dictify(self, frame):
         d = {}
@@ -148,6 +127,15 @@ class AnalyzeStudent:
                 here = here[elem]
             here[row[-2]] = row[-1]
         return d
+
+    def __check_column_status(self,df):
+        header_df=list(df.columns.values)
+        list_all=['ปกติ','วิทยาฑัณฑ์','ตกออก','ลาพัก']
+        list_add=set(list_all) - set(header_df)
+        for col in list_add:
+            df[col] = 0
+        df=df[['ปกติ','วิทยาฑัณฑ์','ตกออก','ลาพัก']]
+        return df
 
 # get_all_student() method for get student data
 # get_all_academic_record() method get student academic record data

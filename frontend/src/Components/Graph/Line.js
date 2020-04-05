@@ -34,7 +34,7 @@ class Linechart extends Component {
     render() {
         return (
             <React.Fragment>
-                 <Line data={data} width={200} height={50} />
+                 <Line data={data} />
             </React.Fragment>
         );
     }

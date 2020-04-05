@@ -1,75 +1,55 @@
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-import "./App.css";
+import React, { Component, Fragment } from 'react';
+import './App.css';
 
-// import Api
-import ApiManage from "./Class/ApiManage";
+// router
+import {Route, Switch} from 'react-router-dom'
+
+// general component
+import Navbar from './components/general/Menu'
+import Home from './components/layouts/Home'
 
 
-//import Main Page
-import Home from "./Components/Index/Home";
-import Navbar from "./Components/Menu";
-import Login from "./Components/Login";
+// user component
+import Admission from "./components/layouts/user/Admission";
+import ActiveRecruitment from "./components/layouts/user/ActiveRecruitment";
+import Alumni from "./components/layouts/user/Alumni";
+import ActivityInformation from "./components/layouts/user/ActivityInformation";
 
-//import Admin Page
+import DepartmentDetail from './components/layouts/user/DepartmentDetail'
 
-//import User Page
-import Active from "./Components/User/ActiveRecruitment";
-
+// admin component
+import AdminHome from "./components/layouts/admin/Home";
+import AdminHomeGeneral from "./components/layouts/admin/HomeGeneral";
+import AdminActivity from "./components/layouts/admin/Activity";
+import AdminNewStudent from "./components/layouts/admin/NewStudent"
+import AlumniManage from './components/layouts/admin/AlumiManage';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: ""
-    };
-  }
-
-  // componentDidMount() {
-  //   ApiManage.get("admission/2560/1/1")
-  //     .then(res => {
-  //       let receive_data = res.data;
-  //       if (receive_data.response === true) {
-  //         this.setState({
-  //           data: receive_data.data
-  //         });
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.log("Error fetching and parsing data", error);
-  //     });
-  // }
   render() {
-    // let { data } = this.state;
     return (
-      <React.Fragment>
-        <Navbar/>
-        <div className="App">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login}/>
+        <Fragment>
+          <Navbar/>
+          <div className="App">
+            <Switch>
+              <Route exact path="/" component={Home}/>
+              <Route exact path="/admission" component={Admission}/>
+              <Route exact path="/active" component={ActiveRecruitment}/>
+              <Route exact path="/alumni" component={Alumni}/>
+              <Route exact path="/activity" component={ActivityInformation}/>
 
-            {/* Route for admin */}
-<<<<<<< HEAD
+              <Route path="/department/:dept_id" component={DepartmentDetail} />
 
-
-            {/* Route for user */}
-            <Route exact path="/active" component={Active}/>
-
-=======
-            <Route exact path="/admin" component={MainAdmin} />
-
-            {/* Route for user */}
-            <Route exact path="/active" component={Active}/>
-            <Route exact path="/admission" component={Admission} />
-            <Route exact path="/alumni" component={Alumni}/>
-            <Route exact path="/activity" component={Activity} />
->>>>>>> master
-          </Switch>
-        </div>
-      </React.Fragment>
-    );
+              {/*    admin    */}
+              <Route exact path="/admin" component={AdminHome}/>
+              <Route exact path="/adminGeneral" component={AdminHomeGeneral}/>
+              <Route exact path="/admin/activity" component={AdminActivity} />
+              <Route exact path="/admin/alumni" component={AlumniManage} />
+              <Route exact path="/admin/newstudent" component={AdminNewStudent} />
+            </Switch>
+          </div>
+        </Fragment>
+    )
   }
 }
+
 export default App;

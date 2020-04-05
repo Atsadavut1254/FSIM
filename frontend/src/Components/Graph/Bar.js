@@ -1,30 +1,57 @@
 import React, { Component } from "react";
 
-import {Bar} from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
-const data = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,99,132,0.2)',
-      borderColor: 'rgba(255,99,132,1)',
-      borderWidth: 1,
-      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-      hoverBorderColor: 'rgba(255,99,132,1)',
-      data: [65, 59, 80, 81, 56, 55, 40]
+const option = {
+  //////// Don't delete this
+  // scales: {
+  //   xAxes: [{
+  //     stacked: true
+  //   }],
+  //   yAxes: [{
+  //     stacked: true
+  //   }]
+  // },
+
+
+  plugins: {
+    // Change options for ALL labels of THIS CHART
+    datalabels: {
+      color: '#000000',
+      anchor: 'end'
     }
-  ]
-};
+  }
+}
+
 class Barchart extends Component {
-  
-    render() {
-        return (
-            <React.Fragment>
-                 <Bar data={data} width={200} height={50}  />
-            </React.Fragment>
-        );
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      labels: [],
+      datasets: []
     }
+  }
+
+  componentDidMount() {
+    let { data } = this.props
+
+    if (data !== undefined) {
+      if (data.length !== 0) {
+        this.setState(data)
+      }
+    }
+
+  }
+
+  render() {
+    let { data } = this.props
+    return (
+      <React.Fragment>
+        {data !== undefined && <Bar data={data.length === 0 ? this.state : data} options={option} />}
+      </React.Fragment>
+    );
+  }
 }
 
 export default Barchart;

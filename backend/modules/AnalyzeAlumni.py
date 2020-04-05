@@ -19,14 +19,48 @@
 # to use the helper just call "inner_res_helper.make_inner_response()"
 # and pass the argument like the receive data format reponse, message and value the description is above
 
+import pandas as pd
+import numpy as np
+
 # import helper
 from backend.helpers.database_helper import DatabaseHelper
 import backend.helpers.inner_response_helper as inner_res_helper
+import backend.helpers.read_google_sheet as read_sheet
 
 
 class AnalyzeAlumni:
 
+    __instance = None
+
+    @staticmethod
+    def get_instance():
+        if AnalyzeAlumni.__instance is None:
+            AnalyzeAlumni()
+        return AnalyzeAlumni.__instance
+
     def __init__(self):
-        print("Alumni")
+        if AnalyzeAlumni.__instance is not None:
+            raise Exception("This class is a singleton! Alumni")
+        else:
+            AnalyzeAlumni.__instance = self
 
 # get_all_alumni() method for get alumni data
+
+    def analyze_survey(self, sheet_url, column):
+        # read and analyze survey data
+        read = read_sheet.read_sheet_data(sheet_url)
+
+        if not read['response']:
+            return inner_res_helper.make_inner_response(response=True, message="Developing", value="Developing")
+
+        data = read['value']
+        header = data[0]
+        data = data[1:]
+        select_column = list(column)
+        print(select_column)
+
+        data = pd.DataFrame(data, columns=header)
+        data = data.loc[:, select_column]
+        print(data.head())
+
+        return inner_res_helper.make_inner_response(response=True, message="Developing", value=header)

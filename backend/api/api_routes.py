@@ -3,6 +3,11 @@ from flask import Blueprint, jsonify, request, make_response, current_app as app
 # import api helper
 import backend.helpers.api_response_helper as api_helper
 from backend.helpers.database_helper import DatabaseHelper
+
+# import modules
+from backend.modules.SummarizeData import SummarizeData as sum
+from backend.modules.AnalyzeStudent import AnalyzeStudent
+
 api_bp = Blueprint('api_bp', __name__, url_prefix='/api/v1')
 
 
@@ -29,6 +34,15 @@ def get_branch_data():
     return api_helper.return_response(data)
 
 
+@api_bp.route('/admission/channel', methods=['GET'])
+def get_admission_channel():
+
+    db = DatabaseHelper.get_instance()
+    data = db.get_admission_channel()
+
+    return api_helper.return_response(data)
+
+
 # # # # # get department student data
 # show department data page (vut)
 @api_bp.route('/department/student', methods=['GET'])
@@ -36,8 +50,11 @@ def get_department_student_data():
     # this api need department id
     department = request.args.get('dept_id')
 
-    db = DatabaseHelper.get_instance()
-    data = db.get_department_student_data(department)
+    db = AnalyzeStudent.get_instance()
+    data = db.analyze_by_dept(department)
+
+    # summarize = sum.get_instance()
+    # data = summarize.summarize_overview_dept_home(department)
 
     return api_helper.return_response(data)
 

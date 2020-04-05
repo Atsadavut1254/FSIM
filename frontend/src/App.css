@@ -2,6 +2,7 @@
   font-size: 18px !important;
   text-align: center;
   margin-top: 0 !important;
+  /* background-color: #919191 !important; */
 }
 
 .App-logo {
@@ -34,6 +35,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -58,7 +60,7 @@
   height: 50px !important;
   top: 0 !important;
   left: auto !important;
-  position: absolute !important;  
+  position: absolute !important;
 }
 
 .banner-active {
@@ -74,9 +76,10 @@
 .btn-circle.btn-xl {
   align-items: center !important;
   width: 80% !important;
-  height: 80% !important;
+  height: 70% !important;
   padding: 10px 16px !important;
   border-radius: 50% !important;
+  background-color: #FF4612 !important;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
 }
 
@@ -87,11 +90,12 @@
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  background: linear-gradient(119.16deg, #eee -19.74%, rgba(156, 156, 155, 0.78) 79.68%) !important;
+  /* background: linear-gradient(119.16deg, #eee -19.74%, rgba(156, 156, 155, 0.78) 79.68%) !important; */
 }
 
 
-.card-admission {
+
+/* .card-admission {
   align-items: center !important;
   width: 600px !important;
   height: 400px !important;
@@ -99,7 +103,7 @@
   background-color: #ffffff !important;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
   margin-bottom: 5vh !important;
-}
+} */
 
 .card-admin {
   align-items: center !important;
@@ -142,27 +146,28 @@
 }
 
 .rectangle-30 {
-  padding-block: 5 !important;
+  /* padding-block: 5 !important; */
   position: relative !important;
   width: 30% !important;
   height: auto !important;
-  text-align: center;
-  background: #FFFFFF !important;
+  text-align: center !important;
+  background: rgb(243, 243, 243) !important;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
   border-radius: 30px !important;
-
+  top: 70% !important;
 }
 
 .rectangle-40 {
   position: relative !important;
-  width: 50% !important;
+  width: 30% !important;
   height: auto !important;
   text-align: center;
   background: linear-gradient(119.16deg, #F28A2E -19.74%, rgba(242, 138, 46, 0.78) 79.68%) !important;
   box-shadow: 0px 4px 4px rgba(153, 127, 127, 0.25) !important;
   border-radius: 10px !important;
   margin-top: -5%;
-  left: 60%;
+  left: 70%;
+  bottom: 10%;
 }
 
 
@@ -191,20 +196,45 @@
   border-bottom: 2px solid rgb(0, 0, 0) !important;
 }
 
-.head-index{
+.head-index {
   position: relative;
   margin-top: 20% !important;
   font-size: 40px !important;
+  /* position: absolute; */
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform: translate(0%, -150%); */
 }
 
+.background-white {
+  float: right !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: auto !important;
+  height: 100% !important;
+  position: absolute !important;
+  opacity: 10 !important;
+  z-index: -5 !important;
+}
 
-.background-yellow{
+.head-right{
+  float: right !important;
+  top: 0 !important;
+  right: 0 !important;
+  /* width: auto !important; */
+  /* height: auto !important; */
+  position: absolute !important;
+  opacity: 0.8 !important;
+  z-index: -5 !important;
+}
+
+.background-yellow {
   float: right !important;
   top: 0 !important;
   right: 0 !important;
   width: 1300px !important;
   height: auto !important;
-  position: absolute !important; 
+  position: absolute !important;
   opacity: 0.8 !important;
   z-index: -5 !important;
 }
@@ -213,41 +243,56 @@
   background-color: #ffd110 !important;
   color: #eee !important;
 
-
-.background-yellow{
-  float: right !important;
-  top: 0 !important;
-  right: 0 !important;
-  width: 1300px !important;
-  height: auto !important;
-  position: absolute !important; 
-  opacity: 0.8 !important;
-  z-index: -5 !important;
 }
 
-.header-chart{
-  margin-top: 3vh !important;
-  width: 200% !important;
+.header-chart {
+  margin-top: 6vh !important;
+  width: auto !important;
   height: auto !important;
+  
 }
 
-.bottom-left{
+.bottom-left {
   float: left !important;
   bottom: 0 !important;
   left: 0 !important;
   width: auto !important;
   height: auto !important;
-  position: absolute !important; 
+  position: absolute !important;
   opacity: 0.8 !important;
   z-index: -20 !important;
   margin-bottom: 0 !important;
 }
 
-.font-18{
+.bottom-left2 {
+  float: right !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  width: auto !important;
+  height: 100% !important;
+  position: absolute !important;
+  opacity: 10 !important;
+  z-index: -20 !important;
+  margin-bottom: 0 !important;
+}
+
+.bg-admin {
+  float: left !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  opacity: 0.8 !important;
+  z-index: -20 !important;
+  margin-bottom: 0 !important;
+}
+
+.font-18 {
   font-size: 18px !important;
 }
 
-.font-16{
+.font-16 {
   font-size: 16px !important;
 }
 
@@ -260,12 +305,121 @@
 }
 
 
-.card-admission {
-  align-items: center !important;
-  width: 600px !important;
-  height: 400px !important;
-  border-radius: 5% !important;
-  background-color: #ffffff !important;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
-  margin-bottom: 5vh !important;
+.admission {
+  margin: 0 !important;
+  padding: 5vh !important;
+  /* background: yellow; */
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  margin-right: -50% !important;
+  transform: translate(-50%, -50%) !important;
+  /* align-items: center !important; */
+  width: 800px !important;
+  /* height: 400px !important; */
+  /* border-radius: 0% !important; */
+  /* background-image: url(img/bg-admin.png); */
+  /* background-color: #ffe600 !important; */
+  /* -webkit-box-shadow: 7px 9px 31px 0px rgba(0, 0, 0, 0.75) !important; */
+  /* -moz-box-shadow: 7px 9px 31px 0px rgba(0, 0, 0, 0.75) !important; */
+  /* box-shadow: 10px 10px 31px 4px rgba(0, 0, 0, 0.25) !important; */
+  /* margin: 10% auto auto auto !important; */
+  background-color: rgb(224, 230, 229) !important;
+}
+
+.background-grey {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+.bg-circle {
+  /* float: right !important; */
+  top: 0 !important;
+  right: 0 !important;
+  /* width: 1300px !important; */
+  /* height: auto !important; */
+  position: absolute !important;
+  opacity: 0.8 !important;
+  z-index: -5 !important;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.carousel-inner {
+  opacity: 80% !important;
+  margin-top: -1rem !important;
+  box-shadow: 0 16px 38px -12px rgba(130, 130, 130, 0.56),
+  0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2) !important;
+}
+
+
+.btn-info {
+  background-color: #3BB3A9 !important;
+  border-Color: #3BB3A9 !important;
+}
+
+.btn-EditData {
+  background-color: #F2C029 !important;
+  border-Color: #F2C029 !important;
+
+}
+
+.btn-DeleteData {
+  background-color: #DA4228 !important;
+  border-Color: #DA4228 !important;
+
+}
+
+.interval {
+  margin-left: 2% !important;
+  margin-right: 2% !important;
+}
+
+
+.interval-1 {
+  margin-left: 2px !important;
+  margin-right: 2px !important;
+}
+
+
+
+.contrain_css {
+  padding: 5% !important;
+}
+
+.Tab2 {
+  background-Color: #F2C029;
+}
+
+.Tab2-text {
+  color: #FFFFFF !important;
+}
+
+.Tab2-text:hover {
+  color: #FFFFFF
+}
+
+.TabContent {
+  padding: 2%;
+}
+
+.style-addData {
+  text-Align: left;
+  align-Self: stretch;
+
+}
+
+.interval-top {
+  margin-top: 2%;
+}
+
+.bg-page {
+  background-color: #F2F2F2;
 }

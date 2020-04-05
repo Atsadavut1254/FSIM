@@ -18,12 +18,6 @@ from backend.api import admin_api_routes
 # import Constant
 import backend.Constant as constant
 
-# import blueprint
-from backend.api import api_routes
-
-# import Constant
-import backend.Constant as constant
-
 # set log
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("FSIM")
