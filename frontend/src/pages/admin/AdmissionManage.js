@@ -3,8 +3,60 @@ import React, { Component, Fragment } from "react";
 import TabDialog from "../../components/TabDialog";
 import { Table, Button } from 'semantic-ui-react'
 import { Form, FormControl, InputGroup } from 'react-bootstrap'
+import SummaryAdmission from "../../pages/admin/SummaryAdmission";
+import SummaryStudentadmis from "../../pages/admin/SummaryStudentadmis";
 
-
+const ManageTab = () => (
+    <Fragment>
+        <Table>
+            <Table.Header>
+                <Table.Row textAlign="center">
+                    <Table.HeaderCell>
+                        ลำดับ
+                    </Table.HeaderCell>
+                    <Table.HeaderCell>
+                        ปีการศึกษา
+                    </Table.HeaderCell>
+                    <Table.HeaderCell>
+                        โครงการที่รับเข้า
+                    </Table.HeaderCell>
+                    <Table.HeaderCell>
+                       รอบรับเข้า
+                    </Table.HeaderCell>
+                    <Table.HeaderCell>
+                       ไฟล์
+                    </Table.HeaderCell>
+                    <Table.HeaderCell>
+                        ดำเนินการ
+                    </Table.HeaderCell>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                <Table.Row textAlign="center" >
+                    <Table.Cell>
+                        1
+                    </Table.Cell>
+                    <Table.Cell>
+                        2560
+                    </Table.Cell>
+                    <Table.Cell>
+                        เรียนดี
+                    </Table.Cell>
+                    <Table.Cell>
+                        1
+                    </Table.Cell>
+                    <Table.Cell>
+                        ไฟล์
+                    </Table.Cell>
+                    <Table.Cell>
+                        <Button>แก้ไข</Button>
+                        <Button>ลบ</Button>
+                    </Table.Cell>
+                </Table.Row>
+            </Table.Body>
+        </Table>
+    </Fragment>
+)
 const AddTab = () => (
     <Fragment>
         <Form>
@@ -66,7 +118,7 @@ class NewStudent extends Component {
 
     render() {
         let tab = ["สรุปข้อมูลนักศึกษาใหม่", "สรุปข้อมูลการรับนักศึกษา", "จัดการข้อมูล", "เพิ่มข้อมูลการรับนักศึกษาใหม่"]
-        let pane = [, , , <AddTab />]
+        let pane = [<SummaryAdmission/>,<SummaryStudentadmis/> , < ManageTab/>, <AddTab />]
         return (
             <Fragment>
                 <TabDialog
