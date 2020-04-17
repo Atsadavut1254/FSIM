@@ -15,9 +15,9 @@ import {
 import {connect} from 'react-redux'
 import {getAllBranch} from "../../redux/action/BranchAction";
 
-import bgyel from "../img/bg-head3.png";
-import GraphBar from "../components/Graph/Bar";
-import AdmissionTypePanel from "../components/AddmissionTypePanel";
+
+import GraphBar from "../../components/Graph/Bar";
+
 
 class SummaryStudentadmis extends Component {
 
@@ -29,12 +29,8 @@ class SummaryStudentadmis extends Component {
             <Fragment>
                 <Container>
                     <Header as="h5" textAlign="center">
-                        ค้นหาการรับเข้าโดยและปีการศึกษา{" "}
-                        <Dropdown
-                            options={this.setUpDropDown(branch_list)}
-                            placeholder="สาขาวิชา"
-                            selection
-                        />
+                        ค้นหาการรับเข้าโดยปีการศึกษา{" "}
+                       
                         <Dropdown
                             options={[
                                 {key: "2560", value: "2560", text: "2560"},
@@ -46,11 +42,7 @@ class SummaryStudentadmis extends Component {
                     </Header>
                     <Divider/>
                     <Grid>
-                        <Grid.Row>
-                            <Card fluid={true}>
-                                <AdmissionTypePanel/>
-                            </Card>
-                        </Grid.Row>
+                        
                         <Grid.Row>
                             <Grid.Column width={8}>
                                 <Card className="card-default">
