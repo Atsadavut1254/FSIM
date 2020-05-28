@@ -484,7 +484,7 @@ class DatabaseHelper:
                                                    [0, 2, 3, 4, 1, 5])
         return inner_res_helper.make_inner_response(response=True, message="Success", value=out_data)
 
-    # 7AD. list admission round 
+    # 8AD. list admission round 
     def get_list_round_admission_admin(self):
         sql_command = "SELECT round_id,round_name FROM `admission_round`"
 
@@ -868,7 +868,7 @@ class DatabaseHelper:
     #                                        attribute=['student_id', 'gpa', 'semester', 'year'],
     #                                        value=gpa_data)
 
-    # 3ST. insert new student data
+    # 2ST. insert new student data
     def insert_new_student_data(self, data):
         # prepare receive data
         student_table = data['student']
@@ -914,7 +914,7 @@ class DatabaseHelper:
             return inner_res_helper.make_inner_response(False, str(e.args[0]), str(e.args[1]))
         return inner_res_helper.make_inner_response(True, "Success", "Execute success.")
 
-    # 4ST. delete student TODO waiting for decision about this function
+    # 3ST. delete student TODO waiting for decision about this function
     def delete_student_by_year(self, year: str):
         year = str(year)
 
@@ -941,7 +941,7 @@ class DatabaseHelper:
 
         return inner_res_helper.make_inner_response(True, "Query Successful", "Success")
 
-    # 5ST. get all student data
+    # 4ST. get all student data
     def get_all_student(self, dept_id: str = None):
         if dept_id is not None and dept_id != 'null':
             sql_command = "select student_id, dept_name, branch_name, current_gpax, status_id, dept_id, branch_id " \
@@ -976,7 +976,7 @@ class DatabaseHelper:
 
         return inner_res_helper.make_inner_response(response=True, message="Success", value=out_function_data)
 
-    # 6ST. Student tracking
+    # 5ST. Student tracking
     def get_student_tracking(self, id_student):
         sql_command = "SELECT gpa, semester, current_gpax, education_year,firstname,lastname " \
                       "FROM `gpa_record` NATURAL JOIN student where student_id='{}'".format(id_student)
@@ -991,7 +991,7 @@ class DatabaseHelper:
 
         return inner_res_helper.make_inner_response(response=True, message="Success", value=out_function_data)
 
-    # 7ST. get all student academic record
+    # 6ST. get all student academic record
     def get_all_academic_record(self, dept_id=None, year=None):
         if dept_id is None and year is None or dept_id == "null" or year == "null":
             sql_command = "select student_id, subject_code, semester, education_year, grade, status_id, branch_id " \
@@ -1021,7 +1021,7 @@ class DatabaseHelper:
 
         return inner_res_helper.make_inner_response(response=True, message="Success", value=out_function_data)
 
-    # 8ST. get academic result by branch
+    # 7ST. get academic result by branch
     def subject_by_branch(self, branch_id, semester, education_year):
         sql_command = "SELECT subject.subject_code, subject.subject_name_en, subject.subject_weigth, " \
                       "academic_record.grade FROM (study_in NATURAL JOIN academic_record) " \
@@ -1040,7 +1040,7 @@ class DatabaseHelper:
 
         return inner_res_helper.make_inner_response(response=True, message="Success", value=out_function_data)
 
-    # 9ST. get student with education status by department
+    # 8ST. get student with education status by department
     def get_student_status(self, dept_id, status_id):
         sql_command = "SELECT student_id, firstname, lastname, current_gpax, branch_name, branch_id " \
                       "FROM student NATURAL JOIN study_in NATURAL JOIN has_branch NATURAL JOIN branch " \
@@ -1067,7 +1067,7 @@ class DatabaseHelper:
             out_function_data.append(temp)
         return inner_res_helper.make_inner_response(response=True, message="Success", value=out_function_data)
 
-    # 10ST. get education status list
+    # 9ST. get education status list
     def get_status_list(self):
         sql_command = "SELECT * FROM student_status"
         execute = self.__execute_query(sql_command)
@@ -1081,7 +1081,7 @@ class DatabaseHelper:
 
         return inner_res_helper.make_inner_response(response=True, message="Success", value=out_function_data)
 
-    # 11ST. get student list group by department
+    # 10ST. get student list group by department
     def get_student_by_year(self, year: str = None):
         sql_command = "SELECT student_id, firstname, lastname, branch_name, current_gpax, dept_id, dept_name, branch_id " \
                       "FROM student NATURAL JOIN study_in NATURAL JOIN branch NATURAL JOIN " \
@@ -1117,7 +1117,7 @@ class DatabaseHelper:
 
         return inner_res_helper.make_inner_response(True, "Query success", out_data)
 
-    # 12ST. get education year as list
+    # 11ST. get education year as list
     def get_education_year_list(self):
         sql_commad = "SELECT student_id, dept_name, branch_name, dept_id, branch_id " \
                      "FROM student NATURAL JOIN study_in NATURAL JOIN branch " \
