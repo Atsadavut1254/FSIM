@@ -1,7 +1,7 @@
 # FSci Student Information System
 The web application used to manage information in Faculty of Science, KMUTT.
 
-## Website feature
+## Website features
  - **For admission data**
 	- Show admission statistic of TCAS round.
 	- Show average academic result for first year student of each admission channel.
@@ -29,3 +29,4 @@ The web application used to manage information in Faculty of Science, KMUTT.
 	- mySQL database
 	- firebase realtime database
 	- google sheet api
+3. This website need google_credentails.json file for Google sheet APIs and firebase_credentails.json file for firebase realtime database please register the services to get the files  for your project.
