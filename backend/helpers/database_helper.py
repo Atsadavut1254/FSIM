@@ -366,16 +366,19 @@ class DatabaseHelper:
     # 2AD. get all admission data
     def get_all_admission(self, year: int = None):
         if year is None or year == 'null':
-            sql_command = "SELECT channel_id, channel_name, admission_year, branch_id, school_id, status_id, student.current_gpax,dept_id " \
-                          "FROM (admission NATURAL JOIN admission_from NATURAL JOIN admission_in_branch NATURAL JOIN " \
-                          "admission_channel NATURAL JOIN admission_studied NATURAL JOIN entrance NATURAL JOIN has_branch) " \
-                          "LEFT JOIN (student NATURAL JOIN has_status) ON student.student_id LIKE entrance.student_id"
+            sql_command = "SELECT channel_id, channel_name, admission_year, branch_id, school_id, status_id, gpa_record.gpa, dept_id " \
+                          "school_id, status_id, gpa_record.gpa, dept_id FROM (admission NATURAL JOIN admission_from NATURAL JOIN  " \
+                          "admission_in_branch NATURAL JOIN admission_channel NATURAL JOIN admission_studied NATURAL JOIN entrance NATURAL JOIN " \
+                          "has_branch) LEFT JOIN (student NATURAL JOIN has_status NATURAL JOIN gpa_record) ON student.student_id LIKE " \
+                          "entrance.student_id WHERE  AND gpa_record.semester = 1"
         else:
-            sql_command = "SELECT channel_id, channel_name, admission_year, branch_id, school_id, status_id, student.current_gpax,dept_id " \
-                          "FROM (admission NATURAL JOIN admission_from NATURAL JOIN admission_in_branch NATURAL JOIN " \
-                          "admission_channel NATURAL JOIN admission_studied NATURAL JOIN entrance NATURAL JOIN has_branch) " \
-                          "LEFT JOIN (student NATURAL JOIN has_status) ON student.student_id LIKE entrance.student_id " \
-                          "WHERE admission_year BETWEEN {} and {}".format(int(year) - 1, int(year))
+            sql_command = "SELECT channel_id, channel_name, admission_year, branch_id, school_id, status_id, gpa_record.gpa, dept_id " \
+                          "school_id, status_id, gpa_record.gpa, dept_id FROM (admission NATURAL JOIN admission_from NATURAL JOIN  " \
+                          "admission_in_branch NATURAL JOIN admission_channel NATURAL JOIN admission_studied NATURAL JOIN entrance NATURAL JOIN " \
+                          "has_branch) LEFT JOIN (student NATURAL JOIN has_status NATURAL JOIN gpa_record) ON student.student_id LIKE " \
+                          "entrance.student_id WHERE admission_year BETWEEN {} AND {} AND gpa_record.semester = 1 AND gpa_record.education_year = {}".format(int(year) - 1, int(year),int(year))
+
+        print(sql_command)
         execute = self.__execute_query(sql_command)
         if not execute['response']:
             return execute

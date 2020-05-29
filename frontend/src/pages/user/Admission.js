@@ -41,6 +41,7 @@ class Admission extends Component {
         this.props.getYearList()
         this.fetchAdmissionRound()
         this.getCountChannel()
+   
 
     }
 
@@ -84,6 +85,7 @@ class Admission extends Component {
         let { selectedYear } = this.props.admission
         let { admissionRound } = this.state
 
+
         Axios.get(`/admission/analyze?year=${selectedYear}`)
             .then(res => {
 
@@ -108,7 +110,8 @@ class Admission extends Component {
                     compareYear: setupStackBarChart(compareYear),
                     countStatus: setupStackBarChart(countStatus),
                     countGrade: countGrade,
-                    gpa_by_branch: gpa_by_branch
+                    gpa_by_branch: gpa_by_branch,
+                    response_round : response_round
                 })
             })
             .catch(error => {
@@ -137,7 +140,6 @@ class Admission extends Component {
     render() {
         let { countChannel, countSchool, compareYear, countStatus, countGrade, admissionRound, gpa_by_branch } = this.state
         let { selectedYear, yearList } = this.props.admission
-
 
         return (
             <Fragment>
