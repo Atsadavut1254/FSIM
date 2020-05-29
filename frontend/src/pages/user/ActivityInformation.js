@@ -43,7 +43,7 @@ class ActivityInformation extends Component {
     }
 
     render() {
-        let { activityData, yearList } = this.props.activity
+        let { activityData, yearList, selectedYear } = this.props.activity
 
         return (
             <Fragment>
@@ -55,7 +55,7 @@ class ActivityInformation extends Component {
                 <div className="my-5">
                     {
                         yearList != null && (
-                            <YearSelect yearList={yearList} title="ค้นหากิจกรรมประชาสัมพันธ์โดยเลือกปีการศึกษา" onSelectYear={this.handleSeclectYear} />
+                            <YearSelect yearList={yearList} selectedYear={selectedYear} title="ค้นหากิจกรรมประชาสัมพันธ์โดยเลือกปีการศึกษา" onSelectYear={this.handleSeclectYear} />
                         )
                     }
                     </div>

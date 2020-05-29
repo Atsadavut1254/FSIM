@@ -36,7 +36,7 @@ const Traching = ({ dept_name, data, handleTracking }) => {
           {
             data !== null ? (
               data.map((item, index) => (
-                <tr textAlign="center" key={index} align="center">
+                <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{item['student_id']}</td>
                   <td>{item['firstname']}  {item['lastname']}</td>

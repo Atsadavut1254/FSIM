@@ -69,7 +69,7 @@ class ActiveRecruitment extends Component {
     }
 
     render() {
-        let { yearList } = this.props.activity
+        let { yearList, selectedYear } = this.props.activity
         let { project_set } = this.state
 
         return (
@@ -81,7 +81,7 @@ class ActiveRecruitment extends Component {
                         </Header>
                     <div className="my-5"> {
                         yearList != null && (
-                            <YearSelect yearList={yearList} title="ค้นหากิจกรรมประชาสัมพันธ์โดยเลือกปีการศึกษา" onSelectYear={this.handleSeclectYear} />
+                            <YearSelect yearList={yearList} selectedYear={selectedYear} title="ค้นหากิจกรรมประชาสัมพันธ์โดยเลือกปีการศึกษา" onSelectYear={this.handleSeclectYear} />
                         )
                     }</div>
                    
