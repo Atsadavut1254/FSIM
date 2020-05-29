@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import axios from "axios";
 
 
-import { Container, Modal, Tab, Col, Row, Button, Table } from 'react-bootstrap'
+import { Container, Modal, Tab, Col, Row } from 'react-bootstrap'
 import { Header, Divider } from 'semantic-ui-react'
 import SideTab, { convertTabName, convertDetail } from '../../../components/SideTabDialog'
 import ReactModal from '../../../components/ReactModal'
