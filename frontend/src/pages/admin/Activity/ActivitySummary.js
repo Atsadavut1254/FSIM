@@ -94,14 +94,14 @@ class ActivitySummary extends Component {
                         <Grid.Row style={{margin:'2%'}}>
                             <Table  responsive   hover>
                                 <thead>
-                                    <tr align="center">
-                                        <th width={4} textAlign="center">
+                                    <tr className="text-center">
+                                        <th width={4}>
                                             ปีการศึกษา
                                         </th>
-                                        <th width={4} textAlign="center">
+                                        <th width={4}>
                                             ชื่อโครงการ
                                         </th>
-                                        <th width={4} textAlign="center">
+                                        <th width={4}>
                                             งบประมาณที่ใช้
                                         </th>
                                     </tr>
@@ -111,10 +111,10 @@ class ActivitySummary extends Component {
                                     {
                                         activityList !== null ? (
                                             activityList.filter(data => data['education_year'] === parseInt(selectedYear)).map((item, index) => (
-                                                <tr align="center" key={index}>
-                                                    <td textAlign="center">{item['education_year']}</td>
-                                                    <td textAlign="center">{item['activity_name']}</td>
-                                                    <td textAlign="center">{item['activity_budget']}</td>
+                                                <tr className="text-center" key={index}>
+                                                    <td>{item['education_year']}</td>
+                                                    <td>{item['activity_name']}</td>
+                                                    <td>{item['activity_budget']}</td>
                                                 </tr>
                                             ))
                                         ) : (

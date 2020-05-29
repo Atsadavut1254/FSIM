@@ -62,7 +62,7 @@ class AlumniSurvey extends Component {
                             <Divider />
                             <Table responsive hover style={{ marginTop: '2%' }}>
                                 <thead>
-                                    <tr align="center">
+                                    <tr className="text-center">
                                         <th width={12} >
                                             ประเด็นการประเมิน
                                         </th>
